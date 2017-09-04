@@ -67,12 +67,13 @@
 				return;	
 			}
 			
-			$valores = explode('-', $nacimiento);
-			
-			if(checkdate($valores[1], $valores[0], $valores[2])){
-				$this->setError($campo, "la fecha ingresada no posee el formato mm-dd-yyyy");
-				return;
-				}		
+						 
+			$nacimiento=str_replace('/', '-', $nacimiento);  //see explanation below for this replacement
+			if (!is_numeric(strtotime($nacimiento))){
+				$this->setError($campo, "El valor ingresado no es un valor aceptable");
+				return;	
+			}
+	
 					
 		}
 		
